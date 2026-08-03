@@ -1,0 +1,25 @@
+# Environments
+venv/
+__pycache__/
+*.pyc
+.env
+
+# Raw photo files - too large, keep them local
+*.CR3
+*.CR2
+*.NEF
+*.ARW
+*.jpg
+*.jpeg
+*.png
+data/
+photos/
+
+# Generated dataset
+*.csv
+*.db
+*.sqlite3
+
+# OS/editor
+.DS_Store
+.vscode/
