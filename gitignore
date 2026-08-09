@@ -23,3 +23,6 @@ photos/
 # OS/editor
 .DS_Store
 .vscode/
+
+exiftool.exe
+exiftool_files/
