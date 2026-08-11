@@ -30,6 +30,10 @@ def main():
     photos = find_photos(folder)
     metadata = extract_metadata(photos)
     
+    if not photos:
+        print("No photos found in the specified folder.")
+        return
+    
     if metadata is not None:
         save_metadata_to_csv(metadata, output_path)
 
