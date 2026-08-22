@@ -9,7 +9,7 @@ def find_photos(folder):
     return photos
 
 def extract_metadata(photos):
-    fields = ["-ISO", "-ShutterSpeedValue", "-ApertureValue", "-FocalLength", "-DateTimeOriginal", "-Model", "-Make", "-LensModel", "-Flash"]
+    fields = ["-ISO", "-ShutterSpeedValue", "-ApertureValue", "-FocalLength", "-DateTimeOriginal", "-Model", "-Make", "-LensModel", "-Flash", "-FlashType", "-FlashExposureComp", "-FlashBits"]
     photo_paths_as_str = [str(photo) for photo in photos]
     command = ["exiftool", "-j"] + fields + photo_paths_as_str
     result = subprocess.run(command, capture_output=True, text=True)
