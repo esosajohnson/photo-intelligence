@@ -1,5 +1,6 @@
 # Environments
 venv/
+.venv/
 __pycache__/
 *.pyc
 .env
@@ -26,3 +27,6 @@ photos/
 
 exiftool.exe
 exiftool_files/
+
+.agents/skills/developing-with-streamlit
+test.py
