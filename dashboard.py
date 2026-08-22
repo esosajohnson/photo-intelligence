@@ -39,6 +39,14 @@ def show_flash_usage(metadata):
         st.bar_chart(flash_counts)
     else:
         st.warning("Flash data not available for distribution chart.")
+        
+def show_flash_type_distribution(metadata):
+    if metadata is not None and 'FlashType' in metadata.columns:
+        st.write("### Flash Type Distribution")
+        flash_type_counts = metadata['FlashType'].value_counts()
+        st.bar_chart(flash_type_counts)
+    else:
+        st.warning("Flash Type data not available for distribution chart.")
 
 st.title("Metadata Dashboard")
 
@@ -48,3 +56,4 @@ display_metadata(metadata)
 show_ISO_distribution(metadata)
 show_focal_length_distribution(metadata)
 show_flash_usage(metadata)
+show_flash_type_distribution(metadata)
