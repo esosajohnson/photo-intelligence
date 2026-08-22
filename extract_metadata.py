@@ -2,6 +2,7 @@ import subprocess
 import json
 import pandas as pd
 from pathlib import Path
+import argparse
 
 def find_photos(folder):
     photos = list(folder.rglob("*.CR3"))
@@ -25,14 +26,20 @@ def save_metadata_to_csv(metadata, output_path):
     print(f"Metadata extracted and saved to {output_path}")
 
 def main():
-    output_path = r"C:\Users\Acer\Downloads\metadata.csv"  # Replace with the desired output path
-    folder = Path(r"C:\Users\Acer\beauty")  # Replace with the actual path to your folder
+    parser = argparse.ArgumentParser(description="Extract metadata from photos and save to CSV.")
+    parser.add_argument("folder", type=str, help="Path to the folder containing photos.")
+    parser.add_argument("--output", type=str, default="photo_dataset.csv", help="Output CSV file name.")
+    args = parser.parse_args()
+    
+    folder = Path(args.folder)
+    output_path = Path(args.output)
     photos = find_photos(folder)
-    metadata = extract_metadata(photos)
     
     if not photos:
         print("No photos found in the specified folder.")
         return
+    
+    metadata = extract_metadata(photos)
     
     if metadata is not None:
         save_metadata_to_csv(metadata, output_path)
