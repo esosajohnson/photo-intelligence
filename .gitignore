@@ -30,3 +30,6 @@ exiftool_files/
 
 .agents/skills/developing-with-streamlit
 test.py
+
+tempCodeRunnerFile.py
+*.tmp
