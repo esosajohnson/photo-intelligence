@@ -3,7 +3,7 @@ import cv2
 import numpy as np
 from pathlib import Path
 
-folder = Path(r"D:\leamington 04.07")
+folder = Path(r"C:\Users\Acer\beauty\random")
 
 def extract_preview_bytes(image_path):
     command = ["exiftool", "-b","-PreviewImage", str(image_path)]
@@ -23,7 +23,10 @@ def compute_sharpness(image):
     variance = laplacian.var()
     return variance
 
-def main():
+def find_max_variance_image(folder):
+    max_variance = -1
+    max_variance_image_path = None
+    
     for image_path in folder.rglob("*.CR3"):
         print(f"Processing image: {image_path}")
         preview_bytes = extract_preview_bytes(image_path)
@@ -37,10 +40,21 @@ def main():
             if img is not None:
                 sharpness = compute_sharpness(img)
                 print(f"Sharpness: {sharpness}")
+                
+                if sharpness > max_variance:
+                    max_variance = sharpness
+                    max_variance_image_path = image_path
             else:
                 print("Failed to decode the image.")
         else:
             print("No preview image found.")
+    
+    return max_variance_image_path, max_variance
 
+def main():
+    max_variance_image_path, max_variance = find_max_variance_image(folder)
+    print(f"Image with maximum variance: {max_variance_image_path}")
+    print(f"Maximum variance: {max_variance}")
+        
 if __name__ == "__main__":
     main()
